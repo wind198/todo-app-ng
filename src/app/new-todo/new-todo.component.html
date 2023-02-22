@@ -1,0 +1,17 @@
+<div class="new-todo-wrapper flex items-center space-x-2">
+  <div
+    class="input-wrapper flex justify-center items-center flex-1 min-h-[32] border overflow-hidden rounded"
+  >
+    <input
+      type="text"
+      class="input-field border-0 bg-transparent outline-0 flex-1 px-4 py-3"
+      [(ngModel)]="newTodoTitle"
+    />
+  </div>
+  <button
+    class="submit-button px-4 py-3 min-w-[32px] bg-blue-600 text-white rounded"
+    (click)="handleSubmit()"
+  >
+    Add
+  </button>
+</div>
