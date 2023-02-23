@@ -1,0 +1,53 @@
+<div
+  class="todo-item-wrapper px-2 py-2 bg-gray-100 rounded-md flex items-center space-x-2"
+  [class]="{ 'bg-gray-300': done }"
+>
+  <div class="text-center w-[24px]">
+    {{ index + 1 }}
+  </div>
+  <p
+    class="item-title flex-1"
+    [class]="{
+      'line-through': done
+    }"
+    *ngIf="!isEditting; else editTitleBlock"
+    (click)="toggleEditting()"
+  >
+    {{ title }}
+  </p>
+  <ng-template #editTitleBlock>
+    <form
+      class="input-wrapper flex justify-center items-stretch flex-1 h-[32px] border rounded overflow-hidden"
+      (submit)="
+        editTitleInputField.value &&
+          updateTitleThisItem(editTitleInputField.value)
+      "
+    >
+      <input
+        type="text"
+        class="flex-1 outline-none border-none px-2 py-1"
+        #editTitleInputField
+      />
+    </form>
+  </ng-template>
+  <label
+    class="done-indicator w-[20px] h-[20px] rounded border border-gray-300 flex items-center justify-center"
+    [class]="{
+      'bg-blue-600': done
+    }"
+  >
+    <input
+      type="checkbox"
+      [checked]="done"
+      class="hidden"
+      (change)="toggleDoneThisItem()"
+    />
+    <span class="text-[0.8em] text-white" *ngIf="done"> &#10003; </span>
+  </label>
+  <button
+    class="flex justify-center items-center px-1 py-1"
+    (click)="deleteThisItem()"
+  >
+    <ng-icon name="bootstrapTrash"></ng-icon>
+  </button>
+</div>

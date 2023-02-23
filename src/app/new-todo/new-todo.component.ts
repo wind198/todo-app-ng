@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { getDefaultTodo } from '../../common/constants';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-new-todo',
@@ -6,15 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-todo.component.css'],
 })
 export class NewTodoComponent implements OnInit {
-  constructor() {}
+  constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {}
 
   newTodoTitle = '';
 
   handleSubmit() {
-    console.log('submit',this.newTodoTitle);
-
-    alert(this.newTodoTitle);
+    const newTodo = { ...getDefaultTodo(), title: this.newTodoTitle };
+    this.todoService.
   }
 }
